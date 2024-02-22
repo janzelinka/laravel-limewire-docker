@@ -56,11 +56,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@3.1.0
         with:
-          app-name: 'zelol'
-          slot-name: 'production'
-          package: .
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8b0301bfd1514cfda7e1879173181a53 }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          remote-dir: /web
