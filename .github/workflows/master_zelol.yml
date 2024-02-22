@@ -68,4 +68,4 @@ jobs:
           ftp-server: ${{ env.FTP_SERVER }}
           ftp-username: ${{ env.FTP_USERNAME }}
           ftp-password: ${{ env.FTP_PASSWORD }}
-          local-dir: /web
+          local-dir: /
