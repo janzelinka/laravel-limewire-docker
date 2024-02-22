@@ -65,7 +65,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         uses: SamKirkland/FTP-Deploy-Action@3.1.0
         with:
-          server: ${{ env.FTP_SERVER }}
-          username: ${{ env.FTP_USERNAME }}
-          password: ${{ env.FTP_PASSWORD }}
+          ftp-server: ${{ env.FTP_SERVER }}
+          ftp-username: ${{ env.FTP_USERNAME }}
+          ftp-password: ${{ env.FTP_PASSWORD }}
           local-dir: toupload
