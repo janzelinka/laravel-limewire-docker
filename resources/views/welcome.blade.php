@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>Hello</h1>
-        <p>World!</p>
+        <p>Worldddd!</p>
+        <? echo phpinfo(); ?>
     </body>
 </html>

@@ -1,12 +1,8 @@
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
-
-# Set working directory
-WORKDIR /var/www
-
-# Install dependencies
+WORKDIR /var/www/html
+ARG XDEBUG_VERSION="xdebug-3.2.0"
+# Install required dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
@@ -22,31 +18,26 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libzip-dev \
     libgd-dev
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-#Mine
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
 RUN docker-php-ext-configure gd --with-external-gd
 RUN docker-php-ext-install gd
 
+RUN yes | pecl install ${XDEBUG_VERSION} \
+    && docker-php-ext-enable xdebug
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Enable Apache modules
+RUN a2enmod rewrite
 
-# Copy existing application directory contents
-COPY . /var/www
+# Copy Composer dependencies
+COPY composer.json composer.lock /var/www/html/
+RUN composer install --no-scripts --no-autoloader
 
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+# Copy the rest of the application code
+COPY . /var/www/html/
 
-# Change current user to www
-USER www
-
-# Expose port 9000 and start php-fpm server
-EXPOSE 8989
-CMD ["php-fpm"]
+# Generate Composer autoload files
+RUN composer dump-autoload 
