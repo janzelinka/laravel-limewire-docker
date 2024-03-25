@@ -22,11 +22,11 @@ jobs:
           ARGS:  --verbose
         uses: SamKirkland/FTP-Deploy-Action@v2.0.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          remote-dir: /zelopb.sk/web
+          ftp_server: ${{ secrets.FTP_SERVER }}
+          ftp_username: ${{ secrets.FTP_USERNAME }}
+          ftp_password: ${{ secrets.FTP_PASSWORD }}
+          local_dir: ./
+          remote_dir: /zelopb.sk/web
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
