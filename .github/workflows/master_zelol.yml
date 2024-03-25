@@ -17,9 +17,9 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ftps://zelopb.sk
+          username: zelol.zelopb.sk
+          password: Abstinent12o0o
           dry-run: true
 
       - name: Install Node.js and npm
