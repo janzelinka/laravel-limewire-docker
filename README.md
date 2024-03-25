@@ -1,1 +1,1 @@
-<p>Testing github actions test</p>
+<p>Testing action</p>
