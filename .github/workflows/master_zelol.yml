@@ -22,9 +22,8 @@ jobs:
       - name: SSH Command
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: shell.r6.websupport.sk
           port: 28114
-          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd zelopb.sk
