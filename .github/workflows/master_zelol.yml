@@ -21,7 +21,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: ./
           REMOTE_DIR: zelopb.sk/web
-          ARGS: --delete --verbose --dry-run
+          ARGS: --delete --verbose
         uses: SamKirkland/FTP-Deploy-Action@v2.0.0
 
       - name: Install Node.js and npm
