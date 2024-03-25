@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
 
 jobs:
   deploy:
@@ -13,24 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Determine changed files
-        id: changed_files
-        run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
-          echo "::set-output name=files::$(cat changed_files.txt)"
-
-      - name: Upload changed files as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: changed-files
-          path: changed_files.txt
-
-      - name: FTP Download changed files artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: changed-files
-          path: changed_files
 
       - name: FTP Deploy
         env:
@@ -42,7 +23,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./changed_files
+          local-dir: ./
           remote-dir: /zelopb.sk/web
 
       - name: Install Node.js and npm
