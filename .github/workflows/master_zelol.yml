@@ -11,33 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: FTP Deploy
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./
-          REMOTE_DIR: zelopb.sk/web
-          ARGS: --delete --verbose
-        uses: SamKirkland/FTP-Deploy-Action@v2.0.0
-
-      - name: Install Node.js and npm
-        uses: actions/setup-node@v2
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          node-version: '14'
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Install Node dependencies
-        run: npm install
-
-      - name: SSH and Install Composer Dependencies
+      - name: SSH Command
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /path/to/project
-            composer install
+            cd /path/to/your/remote/directory
+            git pull origin main
+            composer install --no-interaction --optimize-autoloader
+            npm install
