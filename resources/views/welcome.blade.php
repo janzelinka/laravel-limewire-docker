@@ -3,5 +3,5 @@
 @section('title', 'Welcome page')
 
 @section('content')
-    <p>This is my content</p>
+    <p>This is my contentttt</p>
 @endsection

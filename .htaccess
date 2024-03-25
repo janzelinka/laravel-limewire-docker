@@ -1,9 +1,7 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On
-
-RewriteRule ^$ public/ [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/public/
-RewriteRule ^(.*)$ public/$1
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^zelopb.sk$ [NC,OR]
+    RewriteCond %{HTTP_HOST} ^www.zelopb.sk$
+    RewriteCond %{REQUEST_URI} !zelopb.sk/public/
+    RewriteRule (.*) /zelopb.sk/public/$1 [L]
 </IfModule>
