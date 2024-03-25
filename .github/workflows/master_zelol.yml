@@ -16,15 +16,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: SSH Command
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: 28114
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd zelopb.sk
-            cd web
-            git pull origin master
-            ls
+      - name: SSH to Server and Download Repository
+        run: |
+            ssh uid4943252@shell.r6.websupport.sk -p26391 "git clone https://github.com/yourusername/yourrepository.git /path/to/destination"
+  
+      - name: Install Composer Dependencies
+        run: |
+            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /path/to/destination && composer install"
+  
+      - name: Install npm Dependencies
+        run: |
+            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /path/to/destination && npm install"
