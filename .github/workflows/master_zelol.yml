@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /path/to/your/remote/directory
-            git pull origin main
+            cd /zelopb.sk/web
+            git pull origin master
             composer install --no-interaction --optimize-autoloader
             npm install
