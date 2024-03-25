@@ -23,4 +23,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd zelopb.sk
+            cd web
+            git pull origin master
             ls
