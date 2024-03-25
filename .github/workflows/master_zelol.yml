@@ -27,7 +27,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: abstinent
           script: |
             cd zelopb.sk
             cd web
