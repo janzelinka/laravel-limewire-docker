@@ -24,6 +24,8 @@ jobs:
         with:
           host: shell.r6.websupport.sk
           port: 28114
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd zelopb.sk
