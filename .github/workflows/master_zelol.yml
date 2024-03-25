@@ -14,13 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: zelopb.sk
-          username: zelol.zelopb.sk
-          password: Abstinent12o0o
-          dry-run: true
+      - name: FTP Deploy
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          ARGS: --delete --verbose --dry-run
+        uses: SamKirkland/FTP-Deploy-Action@v2.0.0
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
