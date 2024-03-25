@@ -18,7 +18,7 @@ jobs:
 
       - name: SSH to Server and Download Repository
         run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "git clone https://github.com/janzelinka/laravel-limewire-docker.git /zelopb.sk/web"
+            ssh uid4943252@shell.r6.websupport.sk -p26391 "git clone git@github.com:janzelinka/laravel-limewire-docker.git /zelopb.sk/web"
   
       - name: Install Composer Dependencies
         run: |
