@@ -17,7 +17,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ftps://zelopb.sk
+          server: zelopb.sk
           username: zelol.zelopb.sk
           password: Abstinent12o0o
           dry-run: true
