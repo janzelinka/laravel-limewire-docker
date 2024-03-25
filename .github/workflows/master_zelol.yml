@@ -30,5 +30,4 @@ jobs:
           script: |
             cd zelopb.sk
             cd web
-            git pull origin master
             ls
