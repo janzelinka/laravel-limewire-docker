@@ -23,6 +23,9 @@ jobs:
           script: |
             cd zelopb.sk
             cd web
+            rm -r *
+            git init
+            git remote add origin https://github.com/janzelinka/laravel-limewire-docker.git
             git pull origin master
             ls
             composer install
