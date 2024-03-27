@@ -3,5 +3,5 @@
 @section('title', 'Welcome page')
 
 @section('content')
-    <p>This is my contentttt</p>
+    <p>Testing of commit</p>
 @endsection
