@@ -4,4 +4,5 @@
 
 @section('content')
     <p>Testing of commit once more</p>
+    <b>this is second time</b>
 @endsection
