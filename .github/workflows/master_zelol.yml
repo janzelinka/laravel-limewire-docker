@@ -18,12 +18,12 @@ jobs:
 
       - name: SSH to Server and Download Repository
         run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "git clone git@github.com:janzelinka/laravel-limewire-docker.git /zelopb.sk/web"
+            ssh uid4943252@shell.r6.websupport.sk -p29701 "git clone git@github.com:janzelinka/laravel-limewire-docker.git /zelopb.sk/web"
   
       - name: Install Composer Dependencies
         run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /zelopb.sk/web && composer install"
+            ssh uid4943252@shell.r6.websupport.sk -p29701 "cd /zelopb.sk/web && composer install"
   
       - name: Install npm Dependencies
         run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /zelopb.sk/webn && npm install"
+            ssh uid4943252@shell.r6.websupport.sk -p29701 "cd /zelopb.sk/webn && npm install"
