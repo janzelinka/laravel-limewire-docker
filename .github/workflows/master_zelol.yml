@@ -28,6 +28,8 @@ jobs:
             git init
             git remote add origin https://github.com/janzelinka/laravel-limewire-docker.git
             git pull origin master
-            ls
             composer install
             npm install
+            php artisan config:cache
+            php artisan config:clear
+            php artisan key:generate
