@@ -23,6 +23,7 @@ jobs:
           script: |
             cd zelopb.sk
             cd web
+            rm -rf .git
             rm -r *
             git init
             git remote add origin https://github.com/janzelinka/laravel-limewire-docker.git
