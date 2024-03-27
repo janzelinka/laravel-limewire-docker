@@ -8,22 +8,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: SSH to Server and Download Repository
-        run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "git clone git@github.com:janzelinka/laravel-limewire-docker.git /zelopb.sk/web"
-  
-      - name: Install Composer Dependencies
-        run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /zelopb.sk/web && composer install"
-  
-      - name: Install npm Dependencies
-        run: |
-            ssh uid4943252@shell.r6.websupport.sk -p26391 "cd /zelopb.sk/webn && npm install"
+      - name: SSH Command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 29701
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd zelopb.sk
+            cd web
+            rm -r .git
+            rm -r .github
+            rm ! \( -name '.env' \) -r *
+            git init
+            git remote add origin https://github.com/janzelinka/laravel-limewire-docker.git
+            git pull origin master
+            composer install
+            npm install
+            php artisan config:cache
+            php artisan config:clear
+            php artisan key:generate
